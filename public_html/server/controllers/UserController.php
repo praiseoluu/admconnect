@@ -394,7 +394,7 @@ class UserController {
             ],
             'dob'               => $user['dob']     ?? null,
             'city'              => $user['city']    ?? null,
-            'state'             => $user['state']   ?? 'Katsina State',
+            'state'             => $user['state']   ?? 'Adamawa State',
             'address'           => $user['address'] ?? null,
             'mustChangePassword'=> (bool) ($user['must_change_password'] ?? false),
             'createdAt'         => $user['created_at'],

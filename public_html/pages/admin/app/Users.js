@@ -383,7 +383,7 @@ export default class UsersPage extends AdminLayout {
 
     const locationFields =
         '<div class="um-fields-grid">' +
-        '<div class="um-field um-field--full"><label class="um-field__label">State</label><div class="um-field__value um-field__value--disabled">Katsina State</div></div>' +
+        '<div class="um-field um-field--full"><label class="um-field__label">State</label><div class="um-field__value um-field__value--disabled">Adamawa State</div></div>' +
         '<div class="um-field"><label class="um-field__label">LGA</label>'                  + (isView ? '<div class="um-field__value">' + this.esc(u.lgaName || '—') + '</div>' : '<div id="lga-dropdown-mount"></div>') + '</div>' +
         '<div class="um-field"><label class="um-field__label">City</label>'                 + (isView ? '<div class="um-field__value">' + this.esc(u.city    || '—') + '</div>' : '<div id="city-mount"></div>')          + '</div>' +
         '<div class="um-field um-field--full"><label class="um-field__label">Address</label>' + (isView ? '<div class="um-field__value">' + this.esc(u.address  || '—') + '</div>' : '<div id="address-mount"></div>')     + '</div>' +

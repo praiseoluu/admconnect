@@ -41,7 +41,7 @@ const PLACEHOLDER_COUNT = 4;
 const SPV_BREAKPOINTS = Object.freeze([
     { max: 640,  spv: 1 },
     { max: 1024, spv: 2 },
-    { max: Infinity, spv: 4 },
+    { max: Infinity, spv: 3 },
 ]);
 
 /* ── SVG icons ──────────────────────────────────────────────────────────── */

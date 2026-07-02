@@ -240,7 +240,7 @@ export default class AdminAdvertFormPage extends AdminLayout {
     this._titleInput.mount($('#title-mount'));
 
     this._advertiserInput = this.addChild(new Input({
-      placeholder: 'e.g. Katsina State Ministry of Youth',
+      placeholder: 'e.g. Adamawa State Ministry of Youth',
       value: ex?.advertiser || '',
     }));
     this._advertiserInput.mount($('#advertiser-mount'));

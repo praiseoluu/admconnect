@@ -99,7 +99,7 @@ class AdminUserController {
         $dob       = trim($body['dob']       ?? '');
         $city      = trim($body['city']      ?? '');
         $address   = trim($body['address']   ?? '');
-        $state     = 'Katsina State';
+        $state     = 'Adamawa State';
 
         // Required fields
         if (!$firstName || !$lastName) {
@@ -325,7 +325,7 @@ class AdminUserController {
             'email'               => $u['email'],
             'dob'                 => $u['dob'],
             'city'                => $u['city'],
-            'state'               => $u['state'] ?? 'Katsina State',
+            'state'               => $u['state'] ?? 'Adamawa State',
             'address'             => $u['address'],
             'lgaId'               => $u['lga_id'] ? (int) $u['lga_id'] : null,
             'lgaName'             => $u['lga_name'],

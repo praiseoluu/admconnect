@@ -1,5 +1,5 @@
 /**
- * KTG Connect — Settings Page
+ * ADM Connect — Settings Page
  * Route: /settings
  * Guards: requireAuth + requireCitizen
  * ============================================================
@@ -220,7 +220,7 @@ export default class SettingsPage extends WebLayout {
         </div>
         <div class="settings-form-field">
           <label class="settings-field-label">STATE</label>
-          <input class="settings-input-readonly" value="Katsina State" disabled aria-label="State" />
+          <input class="settings-input-readonly" value="Adamawa State" disabled aria-label="State" />
         </div>
         <div class="settings-form-field">
           <label class="settings-field-label" for="field-city">CITY</label>

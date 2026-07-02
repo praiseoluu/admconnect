@@ -346,14 +346,26 @@ export class AdminSidebar extends Sidebar {
     return `
       <div class="ktg-sidebar__logo-wrap">
         <div class="ktg-sidebar__logo-icon" aria-hidden="true">
-          <img
-            src="/assets/icons/logo-green.svg"
-            alt=""
-            width="35"
-            height="35"
-            loading="eager"
-            decoding="async"
-          />
+          <svg width="35" height="35" viewBox="0 0 40 40" fill="none"
+               xmlns="http://www.w3.org/2000/svg" focusable="false">
+            <rect width="40" height="40" rx="10" fill="url(#admSidebarGrad)"/>
+            <path d="M40 0 H30 A10 10 0 0 1 40 10 Z" fill="#E5B23A"/>
+            <text x="50%" y="56%"
+                  text-anchor="middle"
+                  dominant-baseline="middle"
+                  font-family="Inter, system-ui, sans-serif"
+                  font-weight="800"
+                  font-size="15"
+                  letter-spacing="-0.5"
+                  fill="#ffffff">AK</text>
+            <defs>
+              <linearGradient id="admSidebarGrad" x1="0" y1="0" x2="40" y2="40"
+                              gradientUnits="userSpaceOnUse">
+                <stop offset="0%"   stop-color="#0d4724"/>
+                <stop offset="100%" stop-color="#068927"/>
+              </linearGradient>
+            </defs>
+          </svg>
         </div>
         <div class="ktg-sidebar__brand-stack">
           <span class="ktg-sidebar__brand-text">ADMConnect</span>

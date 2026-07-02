@@ -115,7 +115,7 @@ export default class AdminLGAPage extends AdminLayout {
 
   async _exportCSV() {
     try {
-      const auth  = JSON.parse(sessionStorage.getItem('adamawa_auth') || 'null');
+      const auth  = JSON.parse(sessionStorage.getItem('adm_auth') || 'null');
       const token = auth?.token || '';
       const res   = await fetch(BASE_URL + '/admin/lgas/export', {
         headers: { Authorization: 'Bearer ' + token },
@@ -345,13 +345,13 @@ export default class AdminLGAPage extends AdminLayout {
         '<div class="lga-modal-row">' +
         '<div class="lga-form-field">' +
         '<label class="lga-modal-label">Name of LGA <span class="lga-required">*</span></label>' +
-        '<input class="lga-modal-input" id="add-name" placeholder="e.g. Katsina City" />' +
+        '<input class="lga-modal-input" id="add-name" placeholder="e.g. Yola" />' +
         '</div>' +
         '</div>' +
         '<div class="lga-modal-row">' +
         '<div class="lga-form-field">' +
         '<label class="lga-modal-label">State / Location <span class="lga-required">*</span></label>' +
-        '<input class="lga-modal-input" id="add-state" placeholder="e.g. Katsina State" />' +
+        '<input class="lga-modal-input" id="add-state" placeholder="e.g. Adamawa State" />' +
         '</div>' +
         '</div>' +
         '<div class="lga-modal-row">' +
