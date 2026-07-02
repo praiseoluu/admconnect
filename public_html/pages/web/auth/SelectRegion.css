@@ -1,0 +1,620 @@
+/**
+ * Adamawa Konect — Region Selection Page Styles
+ * ============================================================
+ * Single-canvas dark-green landing screen.
+ * Both sections (Region picker + Responsibility) sit on the
+ * same forest-green background for a unified premium feel.
+ *
+ * Sections:
+ *   1.  Design tokens
+ *   2.  Base / reset
+ *   3.  Layout
+ *   4.  Navigation (desktop + mobile)
+ *   5.  Section 1 — Region picker (on green)
+ *   6.  Zone cards (glass-on-green treatment)
+ *   7.  Section divider
+ *   8.  Section 2 — Responsibility
+ *   9.  Footer
+ *   10. Scroll-reveal animations
+ *   11. Responsive
+ *   12. Reduced-motion overrides
+ */
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   1. DESIGN TOKENS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-site {
+  --ak-ink:        #10231f;
+  --ak-cream:      #f7f2e8;
+  --ak-green:      #0f6b4f;
+  --ak-green-dark: #074435;
+  --ak-green-deep: #052e24;
+  --ak-gold:       #e2a93b;
+
+  /* Elevation */
+  --ak-shadow-sm:  0 2px 8px  rgba(0, 0, 0, 0.15);
+  --ak-shadow-md:  0 8px 28px rgba(0, 0, 0, 0.22);
+  --ak-shadow-lg:  0 20px 60px rgba(0, 0, 0, 0.30);
+
+  /* Motion */
+  --ak-ease:     cubic-bezier(0.22, 1, 0.36, 1);
+  --ak-dur:      0.22s;
+  --ak-dur-slow: 0.45s;
+
+  /* Nav */
+  --ak-nav-h: 68px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   2. BASE / RESET
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-site {
+  font-family: Inter, ui-sans-serif, system-ui, -apple-system,
+               BlinkMacSystemFont, "Segoe UI", sans-serif;
+  color:      #ffffff;
+  background: var(--ak-green-dark);
+  line-height: 1.6;
+  min-height:  100vh;
+  overflow-x:  hidden;
+  box-sizing:  border-box;
+  -webkit-font-smoothing:  antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
+
+.ak-site *,
+.ak-site *::before,
+.ak-site *::after {
+  box-sizing: inherit;
+  margin: 0;
+}
+
+.ak-site a  { color: inherit; text-decoration: none; }
+.ak-site h1,
+.ak-site h2,
+.ak-site h3,
+.ak-site p  { margin-top: 0; }
+
+/* Keyboard-only focus ring */
+.ak-site :focus-visible {
+  outline: 2px solid var(--ak-gold);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+.ak-site :focus:not(:focus-visible) { outline: none; }
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   3. LAYOUT
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-container {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+.ak-main {
+  background: var(--ak-green-dark);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   4. NAVIGATION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-nav {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  background: var(--ak-green-deep);
+  color: #ffffff;
+  box-shadow: var(--ak-shadow-sm);
+}
+
+.ak-nav__inner {
+  width: min(1160px, calc(100% - 48px));
+  margin-inline: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  height: var(--ak-nav-h);
+  gap: 24px;
+}
+
+/* ── Brand ────────────────────────────────────────────────────────────── */
+
+.ak-brand {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-weight: 800;
+  font-size: 16px;
+  color: #ffffff;
+  flex-shrink: 0;
+}
+
+.ak-brand__mark {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--ak-gold);
+  color: var(--ak-green-deep);
+  font-weight: 900;
+  font-size: 14px;
+  flex-shrink: 0;
+  transition: transform var(--ak-dur) var(--ak-ease);
+}
+
+.ak-brand:hover .ak-brand__mark {
+  transform: scale(1.08);
+}
+
+/* ── Desktop links ────────────────────────────────────────────────────── */
+
+.ak-nav__links {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.ak-nav__links a {
+  position: relative;
+  opacity: 0.82;
+  transition: opacity var(--ak-dur);
+  padding-bottom: 2px;
+}
+
+.ak-nav__links a::after {
+  content: '';
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: var(--ak-gold);
+  border-radius: 2px;
+  transition: width var(--ak-dur) var(--ak-ease);
+}
+
+.ak-nav__links a:hover        { opacity: 1; }
+.ak-nav__links a:hover::after { width: 100%; }
+
+/* ── Mobile hamburger ─────────────────────────────────────────────────── */
+
+.ak-nav__toggle {
+  display: none;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  border: 1px solid rgba(255, 255, 255, 0.22);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.07);
+  color: #ffffff;
+  cursor: pointer;
+  transition: background var(--ak-dur);
+  flex-shrink: 0;
+}
+
+.ak-nav__toggle:hover {
+  background: rgba(255, 255, 255, 0.14);
+}
+
+/* ── Mobile menu ──────────────────────────────────────────────────────── */
+
+.ak-mobile-menu {
+  display: flex;
+  flex-direction: column;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.32s var(--ak-ease),
+              opacity     0.28s var(--ak-ease),
+              padding     0.28s var(--ak-ease);
+  border-top: 1px solid rgba(255, 255, 255, 0);
+}
+
+.ak-mobile-menu--open {
+  max-height: 200px;
+  opacity: 1;
+  padding: 10px 0 16px;
+  border-top-color: rgba(255, 255, 255, 0.10);
+}
+
+.ak-mobile-menu a {
+  display: block;
+  padding: 11px 24px;
+  font-size: 15px;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.88);
+  transition: color        var(--ak-dur),
+              padding-left var(--ak-dur) var(--ak-ease);
+}
+
+.ak-mobile-menu a:hover {
+  color: var(--ak-gold);
+  padding-left: 32px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   5. SECTION 1 — REGION PICKER  (on green)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-pick {
+  padding: 84px 0 60px;
+}
+
+.ak-pick__intro {
+  margin-bottom: 52px;
+  max-width: 820px;
+}
+
+.ak-pick__kicker {
+  display: block;
+  margin-bottom: 14px;
+  font-size: 12px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ak-gold);
+}
+
+.ak-pick__heading {
+  font-size: clamp(32px, 5vw, 52px);
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+  margin-bottom: 16px;
+}
+
+.ak-pick__sub {
+  font-size: 16px;
+  color: rgba(255, 255, 255, 0.78);
+  line-height: 1.7;
+  margin-bottom: 0;
+}
+
+/* ── Zone grid ────────────────────────────────────────────────────────── */
+
+.ak-zone-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   6. ZONE CARDS  (glass-on-green treatment)
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-zone-card {
+  all: unset;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  padding: 30px 26px 26px;
+  background: rgba(255, 255, 255, 0.06);
+  border: 1.5px solid rgba(255, 255, 255, 0.12);
+  border-radius: 14px;
+  cursor: pointer;
+  text-align: left;
+  position: relative;
+  overflow: hidden;
+  backdrop-filter: blur(2px);
+  color: #ffffff;
+  transition:
+    transform    var(--ak-dur)      var(--ak-ease),
+    box-shadow   var(--ak-dur)      var(--ak-ease),
+    border-color var(--ak-dur)      var(--ak-ease),
+    background   var(--ak-dur)      var(--ak-ease);
+}
+
+.ak-zone-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 3px;
+  background: linear-gradient(90deg, var(--ak-gold), var(--ak-green));
+  border-radius: 14px 14px 0 0;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--ak-dur-slow) var(--ak-ease);
+}
+
+.ak-zone-card:hover {
+  background: rgba(255, 255, 255, 0.10);
+  border-color: rgba(226, 169, 59, 0.55);
+  box-shadow: var(--ak-shadow-md);
+  transform: translateY(-4px);
+}
+
+.ak-zone-card:hover::before {
+  transform: scaleX(1);
+}
+
+.ak-zone-card:active {
+  transform: translateY(-1px);
+  box-shadow: var(--ak-shadow-sm);
+}
+
+/* ── Number badge ─────────────────────────────────────────────────────── */
+
+.ak-zone-card__num {
+  display: grid;
+  place-items: center;
+  width: 38px;
+  height: 38px;
+  border-radius: 8px;
+  background: var(--ak-gold);
+  color: var(--ak-green-deep);
+  font-size: 13px;
+  font-weight: 900;
+  flex-shrink: 0;
+  transition: transform var(--ak-dur) var(--ak-ease);
+}
+
+.ak-zone-card:hover .ak-zone-card__num {
+  transform: scale(1.1);
+}
+
+/* ── Title ────────────────────────────────────────────────────────────── */
+
+.ak-zone-card__title {
+  display: block;
+  font-size: 20px;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.2;
+}
+
+/* ── Description ──────────────────────────────────────────────────────── */
+
+.ak-zone-card__desc {
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.74);
+  line-height: 1.65;
+  margin-bottom: 0;
+  flex: 1;
+}
+
+/* ── Inline CTA label ─────────────────────────────────────────────────── */
+
+.ak-zone-card__cta {
+  display: inline-block;
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--ak-gold);
+  letter-spacing: 0.01em;
+  opacity: 0;
+  transform: translateX(-6px);
+  transition: opacity   var(--ak-dur) var(--ak-ease),
+              transform var(--ak-dur) var(--ak-ease);
+}
+
+.ak-zone-card:hover .ak-zone-card__cta {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   7. SECTION DIVIDER
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-resp {
+  padding: 20px 0 26px;
+  position: relative;
+}
+
+.ak-resp::before {
+  content: '';
+  display: block;
+  width: min(1160px, calc(100% - 48px));
+  margin: 0 auto 20px;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    rgba(226, 169, 59, 0.35) 50%,
+    transparent 100%
+  );
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   8. SECTION 2 — RESPONSIBILITY
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-resp__top {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 20px;
+  align-items: start;
+  margin-bottom: 16px;
+}
+
+.ak-resp__kicker {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 9.5px;
+  font-weight: 900;
+  letter-spacing: 0.10em;
+  text-transform: uppercase;
+  color: var(--ak-gold);
+}
+
+.ak-resp__heading {
+  font-size: clamp(14px, 1.8vw, 19px);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  color: #ffffff;
+  margin-bottom: 0;
+}
+
+.ak-resp__body {
+  font-size: 11.5px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.6;
+  margin-bottom: 0;
+  padding-top: 12px;
+}
+
+/* ── Commitment cards ─────────────────────────────────────────────────── */
+
+.ak-resp__cards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+
+.ak-resp__card {
+  padding: 11px 12px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, 0.06);
+  transition: background    var(--ak-dur),
+              border-color  var(--ak-dur),
+              transform     var(--ak-dur) var(--ak-ease);
+}
+
+.ak-resp__card:hover {
+  background:   rgba(255, 255, 255, 0.10);
+  border-color: rgba(255, 255, 255, 0.26);
+  transform: translateY(-2px);
+}
+
+.ak-resp__card h3 {
+  margin-bottom: 4px;
+  font-size: 12px;
+  font-weight: 800;
+  color: var(--ak-gold);
+}
+
+.ak-resp__card p {
+  font-size: 10.5px;
+  color: rgba(255, 255, 255, 0.72);
+  line-height: 1.5;
+  margin-bottom: 0;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   9. FOOTER
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-footer {
+  padding: 24px 0;
+  background: var(--ak-green-deep);
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 13px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ak-footer__inner {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   10. SCROLL-REVEAL ANIMATIONS
+   ═══════════════════════════════════════════════════════════════════════ */
+
+.ak-reveal {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity   0.55s var(--ak-ease),
+              transform 0.55s var(--ak-ease);
+}
+
+.ak-zone-grid .ak-reveal:nth-child(1) { transition-delay: 0.00s; }
+.ak-zone-grid .ak-reveal:nth-child(2) { transition-delay: 0.08s; }
+.ak-zone-grid .ak-reveal:nth-child(3) { transition-delay: 0.16s; }
+
+.ak-resp__cards .ak-reveal:nth-child(1) { transition-delay: 0.00s; }
+.ak-resp__cards .ak-reveal:nth-child(2) { transition-delay: 0.08s; }
+.ak-resp__cards .ak-reveal:nth-child(3) { transition-delay: 0.16s; }
+
+.ak-reveal--in {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   11. RESPONSIVE
+   ═══════════════════════════════════════════════════════════════════════ */
+
+/* ── Tablet (≤ 860px) ─────────────────────────────────────────────────── */
+@media (max-width: 860px) {
+  .ak-zone-grid,
+  .ak-resp__top,
+  .ak-resp__cards {
+    grid-template-columns: 1fr;
+  }
+
+  .ak-resp__body  { padding-top: 0; }
+
+  .ak-pick        { padding: 60px 0 40px; }
+  .ak-resp        { padding: 16px 0 22px; }
+
+  .ak-resp::before { margin-bottom: 16px; }
+
+  .ak-pick__intro { margin-bottom: 36px; }
+  .ak-resp__top   { gap: 12px; margin-bottom: 12px; }
+}
+
+/* ── Small mobile (≤ 520px) ────────────────────────────────────────────── */
+@media (max-width: 520px) {
+  .ak-nav__links  { display: none; }
+  .ak-nav__toggle { display: flex; }
+
+  .ak-container,
+  .ak-nav__inner {
+    width: calc(100% - 32px);
+  }
+
+  .ak-pick__heading { font-size: 28px; }
+
+  .ak-zone-card {
+    padding: 24px 20px;
+    gap: 12px;
+  }
+
+  .ak-resp          { padding: 14px 0 18px; }
+  .ak-resp::before  { margin-bottom: 12px; }
+  .ak-resp__heading { font-size: 13px; }
+  .ak-resp__body    { font-size: 10.5px; }
+  .ak-resp__card    { padding: 9px 10px; }
+  .ak-resp__card h3 { font-size: 11px; }
+  .ak-resp__card p  { font-size: 10px; }
+
+  .ak-footer__inner {
+    flex-direction: column;
+    gap: 4px;
+    text-align: center;
+  }
+}
+
+/* ═══════════════════════════════════════════════════════════════════════════
+   12. REDUCED MOTION
+   ═══════════════════════════════════════════════════════════════════════ */
+
+@media (prefers-reduced-motion: reduce) {
+  .ak-site *,
+  .ak-site *::before,
+  .ak-site *::after {
+    animation-duration:       0.01ms !important;
+    animation-iteration-count: 1     !important;
+    transition-duration:      0.01ms !important;
+  }
+
+  .ak-reveal {
+    opacity: 1;
+    transform: none;
+  }
+}

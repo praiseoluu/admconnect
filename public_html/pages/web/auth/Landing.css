@@ -1,0 +1,283 @@
+/* ── Landing Page ────────────────────────────────────────────────────────── */
+
+/*
+ * Page-specific styles for the landing page.
+ * Nav, footer, and shell styles live in _PublicLayout.css.
+ */
+
+/* ── Billboard ad carousel ────────────────────────────────────────────────── */
+
+.landing-carousel {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.landing-carousel__wrap {
+  position: relative;
+  width: 100%;
+  min-height: 160px;
+}
+
+.landing-carousel__viewport {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+}
+
+.landing-carousel__track {
+  display: flex;
+  gap: 12px;
+  transition: transform 0.45s cubic-bezier(0.4, 0, 0.2, 1);
+  will-change: transform;
+}
+
+.landing-carousel__btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 34px;
+  height: 34px;
+  border-radius: 50%;
+  border: 1.5px solid rgba(255, 255, 255, 0.6);
+  background: rgba(0, 0, 0, 0.35);
+  color: #fff;
+  cursor: pointer;
+  z-index: 3;
+  transition: background var(--transition-fast), border-color var(--transition-fast);
+  backdrop-filter: blur(4px);
+}
+
+.landing-carousel__btn:hover {
+  background: rgba(0, 0, 0, 0.6);
+  border-color: rgba(255, 255, 255, 0.9);
+}
+
+.landing-carousel__btn--prev { left: 8px; }
+.landing-carousel__btn--next { right: 8px; }
+
+.landing-carousel__dots {
+  display: flex;
+  gap: var(--space-2);
+  justify-content: center;
+  min-height: 10px;
+}
+
+.lc-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  border: none;
+  background: var(--color-border);
+  cursor: pointer;
+  padding: 0;
+  transition: background var(--transition-fast), transform var(--transition-fast);
+}
+
+.lc-dot--active {
+  background: var(--color-primary);
+  transform: scale(1.35);
+}
+
+.landing-carousel__static {
+  display: flex;
+  gap: 12px;
+  padding: var(--space-4) var(--space-6);
+  background: var(--color-bg);
+  border-bottom: 1px solid var(--color-border-light);
+}
+
+.landing-carousel__static .landing-billboard {
+  flex: 1;
+}
+
+.landing-billboard {
+  display: block;
+  position: relative;
+  width: 100%;
+  height: 160px;
+  background-image: var(--billboard-bg);
+  background-size: cover;
+  background-position: center;
+  background-color: var(--color-primary-15);
+  border-radius: var(--radius-xl);
+  text-decoration: none;
+  overflow: hidden;
+}
+
+.landing-billboard--no-img {
+  background-image: none;
+  background: linear-gradient(135deg, var(--color-primary) 0%, #0f7a36 100%);
+}
+
+.landing-billboard--placeholder {
+  background-image: none;
+  background: var(--color-surface, #f5f5f5);
+  border: 2px dashed var(--color-border, #ddd);
+  cursor: default;
+  pointer-events: none;
+}
+
+.landing-billboard__title--placeholder {
+  height: 1em;
+  width: 60%;
+  border-radius: 4px;
+  background: linear-gradient(
+          90deg,
+          var(--color-border, #ddd) 25%,
+          var(--color-surface-alt, #ececec) 50%,
+          var(--color-border, #ddd) 75%
+  );
+  background-size: 200% 100%;
+  animation: billboard-shimmer 1.6s infinite;
+  color: transparent;
+}
+
+@keyframes billboard-shimmer {
+  0%   { background-position: 200% 0; }
+  100% { background-position: -200% 0; }
+}
+
+.landing-billboard__overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+          to right,
+          rgba(0, 0, 0, 0.55) 0%,
+          rgba(0, 0, 0, 0.25) 60%,
+          rgba(0, 0, 0, 0.05) 100%
+  );
+}
+
+.landing-billboard--no-img .landing-billboard__overlay {
+  background: none;
+}
+
+.landing-billboard__content {
+  position: relative;
+  z-index: 1;
+  height: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-8);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  gap: var(--space-1);
+}
+
+.landing-billboard__sponsored {
+  font-size: 10px;
+  font-weight: var(--font-weight-bold);
+  text-transform: uppercase;
+  letter-spacing: var(--letter-spacing-wider);
+  color: rgba(255, 255, 255, 0.6);
+}
+
+.landing-billboard__advertiser {
+  font-size: var(--font-size-xs);
+  color: rgba(255, 255, 255, 0.75);
+  font-weight: var(--font-weight-medium);
+}
+
+.landing-billboard__title {
+  font-size: clamp(1.1rem, 2.5vw, 1.5rem);
+  font-weight: var(--font-weight-bold);
+  color: #fff;
+  margin: 0;
+  line-height: 1.25;
+  max-width: 480px;
+}
+
+.landing-billboard__cta {
+  display: inline-block;
+  margin-top: var(--space-2);
+  padding: var(--space-2) var(--space-4);
+  background: #fff;
+  color: var(--color-primary);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
+  border-radius: var(--radius-full);
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+  align-self: flex-start;
+}
+
+.landing-billboard:hover .landing-billboard__cta {
+  opacity: 0.9;
+  transform: translateX(2px);
+}
+
+/* ── Hero ─────────────────────────────────────────────────────────────── */
+
+.landing__hero {
+  padding: var(--space-16) var(--space-6) var(--space-20);
+  background: linear-gradient(
+          #0000004F,
+          #0000004F
+  ), url(/assets/images/auth/hero--img.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  height: calc(80vh - 64px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.landing__hero-inner {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  gap: var(--space-16);
+  align-items: center;
+  justify-content: center;
+}
+
+.landing__hero-content {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+}
+
+.landing__hero-heading {
+  font-size: clamp(2.25rem, 5vw, 3.5rem);
+  font-weight: var(--font-weight-black);
+  color: var(--color-bg);
+  line-height: 1.1;
+  letter-spacing: -0.03em;
+  text-align: center;
+}
+
+/* ── Region landing tagline ───────────────────────────────────────────── */
+
+.rl-tagline {
+  font-size: clamp(1rem, 2vw, 1.25rem);
+  color: rgba(255, 255, 255, 0.82);
+  text-align: center;
+  margin: 0;
+  font-weight: var(--font-weight-medium);
+  letter-spacing: 0.01em;
+}
+
+/* ── Responsive ───────────────────────────────────────────────────────── */
+
+@media (max-width: 768px) {
+  .landing-carousel { padding: var(--space-3) var(--space-4); }
+  .landing-carousel__wrap { min-height: 140px; }
+  .landing-billboard { height: 140px; }
+  .landing-billboard__content { padding: 0 var(--space-5); }
+  .landing-billboard__title { font-size: 1rem; }
+
+  .landing__hero-inner {
+    flex-direction: column;
+    gap: var(--space-12);
+  }
+}
